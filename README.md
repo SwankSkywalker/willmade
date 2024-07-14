@@ -1,6 +1,6 @@
 # Todo
 
-- [ ] Initialize project to git
-- [ ] Add Shadcnui
+- [x] Initialize project to git
+- [x] Add Shadcnui
 - [ ] Setup Velite
 - [ ] refer to the yt vid
