@@ -3,5 +3,7 @@
 - [x] Initialize project to git
 - [x] Add Shadcnui
 - [x] Setup Velite
-- [ ] setup site-wide components and links
-- [ ] refer to the yt vid
+- [x] setup site-wide components and links
+- [ ] Fix nav links and layout (tailwindcss)
+- [ ] Build landing page
+- [ ] scaffold blog page
