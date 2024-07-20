@@ -4,6 +4,7 @@
 - [x] Add Shadcnui
 - [x] Setup Velite
 - [x] setup site-wide components and links
-- [ ] Fix nav links and layout (tailwindcss)
+- [x] Fix nav links and layout (tailwindcss)
+- [ ] implement mobile breakpoints
 - [ ] Build landing page
 - [ ] scaffold blog page
