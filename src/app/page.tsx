@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <section>Hello Mom :) this site is under construction!</section>
+    <section className="p-4">Hello Mom :) this site is under construction!</section>
   );
 }
