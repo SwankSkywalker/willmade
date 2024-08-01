@@ -20,13 +20,13 @@ export function MainNav() {
             </Link>
             <Link href="/moments" className={cn(
                 "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
-                pathName === "/words" ? "text-foreground" : "text-foreground/60"
+                pathName === "/moments" ? "text-foreground" : "text-foreground/60"
                 )}>
                     Moments
             </Link>
             <Link href="/Radio" className={cn(
                 "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
-                pathName === "/words" ? "text-foreground" : "text-foreground/60"
+                pathName === "/radio" ? "text-foreground" : "text-foreground/60"
                 )}>
                     Radio
             </Link>
