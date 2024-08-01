@@ -13,19 +13,19 @@ export function MainNav() {
                 <span className="font-bold italic">{siteConfig.name}</span>
             </Link>
             <Link href="/words" className={cn(
-                "text-sm font-semibold italic transition-colors hover:text-primary",
+                "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
                 pathName === "/words" ? "text-foreground" : "text-foreground/60"
                 )}>
                     Words
             </Link>
             <Link href="/moments" className={cn(
-                "text-sm font-semibold italic transition-colors hover:text-primary",
+                "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
                 pathName === "/words" ? "text-foreground" : "text-foreground/60"
                 )}>
                     Moments
             </Link>
             <Link href="/Radio" className={cn(
-                "text-sm font-semibold italic transition-colors hover:text-primary",
+                "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
                 pathName === "/words" ? "text-foreground" : "text-foreground/60"
                 )}>
                     Radio
