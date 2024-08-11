@@ -1,9 +1,10 @@
 import { posts } from "#site/content"
 import { PostItem } from "@/components/post-item";
+import { sortPosts } from "@/lib/utils";
 
 export default async function WordsPage() {
-
-    const displayPosts = posts
+    const sortedPosts = sortPosts(posts.filter((posts) => posts.published));
+    const displayPosts = sortedPosts
     console.log(posts);
 
     return (
