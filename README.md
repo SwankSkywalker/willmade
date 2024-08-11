@@ -8,6 +8,7 @@
 - [x] implement mobile breakpoints
 - [x] add light + dark toggle
 - [x] scaffold blog page
-- [ ] write func to display correct date format on blog post
+- [x] write func to display correct date format on blog post
+- [ ] debug date (why is it subtracting 1 day from meta's date?)
 - [ ] write helper component to format blog content
 - [ ] Build landing page
