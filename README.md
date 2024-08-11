@@ -6,6 +6,8 @@
 - [x] setup site-wide components and links
 - [x] Fix nav links and layout (tailwindcss)
 - [x] implement mobile breakpoints
-- [ ] add light + dark toggle
+- [x] add light + dark toggle
+- [x] scaffold blog page
+- [ ] write func to display correct date format on blog post
+- [ ] write helper component to format blog content
 - [ ] Build landing page
-- [ ] scaffold blog page
