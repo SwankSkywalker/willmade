@@ -1,8 +1,10 @@
 import { posts } from "#site/content"
+import { PostItem } from "@/components/post-item";
 
 export default async function WordsPage() {
 
     const displayPosts = posts
+    console.log(posts);
 
     return (
         <div className="container max-w-4xl py-6 lg:py-10">
@@ -15,6 +17,20 @@ export default async function WordsPage() {
                 </div>
             </div>
             <hr className="mt-8" />
+            {displayPosts?.length > 0 ? (
+             <ul className="flex flex-col">
+                {displayPosts.map(posts => {
+                    const { slug, date, title, description } = posts;
+                    return (
+                        <li key={slug}>
+                            <PostItem slug={slug} date={date} title={title} description={description} />
+                        </li>
+                    )
+                })}
+             </ul>
+            ) : (
+                <p>Nothing to see here yet</p>
+            )}
         </div>
-    )
+    );
 }
