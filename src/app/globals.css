@@ -1,7 +1,7 @@
 @tailwind base;
   @tailwind components;
   @tailwind utilities;
-  @import 'tailwindcss/typography' /** for some reason this import does not resolve with an ";" at the end*/
+  /** @import 'tailwindcss/typography'  for some reason this import does not resolve with an ";" at the end*/
 
   @layer base {
     :root {
