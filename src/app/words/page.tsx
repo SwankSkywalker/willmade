@@ -12,8 +12,8 @@ export default async function WordsPage() {
             <div className="flex flex-col item-start gap-4 md:flex-row md:justify-between md:gap-8">
                 <div className="flex-1 space-y-4">
                     <h1 className="inline-block font-black italic text-4xl lg:tex-5xl">Words</h1>
-                <p className="text-xl text-muted-foreground">
-                    Getting out of my head, and getting it online.
+                <p className="text-xl text-muted-foreground font-bold">
+                    A repository of thoughts.
                 </p>
                 </div>
             </div>
