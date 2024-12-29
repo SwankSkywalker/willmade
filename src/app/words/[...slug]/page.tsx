@@ -1,6 +1,10 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-components";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import WordsPage from "../page";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface PostPageProps {
     params: {
@@ -34,6 +38,9 @@ export default async function PostPage({params}: PostPageProps) {
             {post.description ? (<p className="text-xl mt-0 text-muted-foreground">{post.description}</p>): null}
             <hr className="my-4" />
             <MDXContent code={post.body} />
+            <Link href="./" className={cn(buttonVariants({variant: "link"}), "py-0")}>
+                Go Back
+            </Link>
         </article>
     )
 }
