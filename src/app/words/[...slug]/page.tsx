@@ -39,7 +39,7 @@ export default async function PostPage({params}: PostPageProps) {
             <hr className="my-4" />
             <MDXContent code={post.body} />
             <Link href="./" className={cn(buttonVariants({variant: "link"}), "py-0")}>
-                Go Back
+                ← Go Back
             </Link>
         </article>
     )
