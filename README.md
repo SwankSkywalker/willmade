@@ -9,5 +9,5 @@
 - [x] add light + dark toggle
 - [x] scaffold blog page
 - [x] write func to display correct date format on blog post
-- [ ] write helper component to format blog content
-- [ ] back buttons (duh) 
+- [x] write helper component to format blog content
+- [x] back buttons (duh)
