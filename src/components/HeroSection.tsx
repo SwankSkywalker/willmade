@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
+import Letter from "./Letter";
 
 const LETTERS = ["W", "I", "L", "L", "M", "A", "D", "E"]
 
