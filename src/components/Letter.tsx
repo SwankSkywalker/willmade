@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useMemo } from "react";
 import { motion } from "framer-motion"
 
@@ -57,10 +59,7 @@ const Letter: React.FC<LetterProps> = ({ letter, mousePos, isInteracting }) => {
                 transition: { type: "spring", stiffness: 100, damping: 10 }
             }}
             className="absolute font-bold select-none"
-            style={{ 
-                rotate: 10, 
-                scale: 75 
-            }}
+            style={{/* addtional styling */}}
         >
             {letter}
         </motion.div>
