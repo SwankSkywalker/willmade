@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Letter from "./Letter";
@@ -16,7 +18,7 @@ const HeroSection: React.FC = () => {
         setMousePos({ x: e.clientX, y: e.clientY })
     }, [])
 
-    // On mount, attach mouse  listener
+    // On mount, attach mouse listener
     useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove)
         return () => window.removeEventListener("mousemove", handleMouseMove)
@@ -65,6 +67,7 @@ const HeroSection: React.FC = () => {
                     ))}
                 </div>
             </div>
+            {/* <h1 className="text-6xl text-white">WILLMADE</h1> */}
         </section>
     )
 }
