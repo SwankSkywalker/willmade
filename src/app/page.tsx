@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {/* Hero section outside the container so it can span full w/h */}
-      <HeroSection />
+      {/*<HeroSection />*/}
 
       {/* Main container for rest of page */}
       <div className="container max-w-4xl py-6 lg:py-10">
