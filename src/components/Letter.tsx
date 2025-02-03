@@ -30,7 +30,7 @@ const Letter: React.FC<LetterProps> = ({ letter, mousePos, isInteracting }) => {
         // we assume the hero is centered at the screen. A more robust approach
         // might measure actual offsets. We'll approximate here.
         const centerX = window.innerWidth / 2 + baseX
-        const centerY = window.innerWidth / 2 + baseY
+        const centerY = window.innerHeight / 2 + baseY
         const deltaX = mousePos.x - centerX
         const deltaY = mousePos.y - centerY
         return [deltaX, deltaY]
@@ -54,9 +54,9 @@ const Letter: React.FC<LetterProps> = ({ letter, mousePos, isInteracting }) => {
             animate={{
                 x: baseX + offsetX,
                 y: baseY + offsetY,
-                fontSize: "8rem",
+                fontSize: "12rem",
                 color: "#ff69b4",
-                transition: { type: "spring", stiffness: 100, damping: 10 }
+                transition: { type: "spring", stiffness: 500, damping: 15 }
             }}
             className="absolute font-bold select-none"
             style={{/* addtional styling */}}
