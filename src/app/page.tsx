@@ -9,9 +9,14 @@ export default function Home() {
 
       {/* Main container for rest of page */}
       <div className="container max-w-4xl py-6 lg:py-10">
-        <div className="grid place-items-center h-screen">
-          <p className="p-4 mx-auto content-center"><b>Salut!</b>
-            <p>Welcome to my little corner of the internet</p> <p>A smorgasbord of creativity, curiosity, and chaos.</p> </p>
+        <div className="grid h-screen">
+          <p className="p-1 mx-auto place-content-center text-6xl">
+            <b><em>Salut!</em></b>< br/>
+          </p>
+          <p className="p-4 mx-auto content-center">
+            Welcome to my little corner of the internet< br/>
+            A smorgasbord of creativity, curiosity, and chaos.
+          </p>
         </div>
       </div>
     </>
