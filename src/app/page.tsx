@@ -16,7 +16,6 @@ export default function Home() {
           <p className="p-4 mx-auto content-center h-0">
             Welcome to my little corner of the internet< br/>
             A smorgasbord of creativity, curiosity, and chaos.< br/>
-            And as more gets added this section will expand out.
           </p>
         </div>
       </div>
