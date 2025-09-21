@@ -1,0 +1,81 @@
+name: NPM auto update
+
+on:
+    workflow_dispatch:
+    schedule:
+        # every Monday at 0600 (UTC)
+        - cron: "0 6 * * 1"
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    update-deps:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up Node (LTS)
+              uses: actions/setup-node@v4
+              with: 
+                node-version: 'lts/*'
+                cache: 'npm'
+            
+            - name: Upgrade npm to latest
+              run: |
+                npm i -g npm@latest
+                echo "Node: $(node -v)"
+                echo "npm: $(npm -v)"
+
+            - name: Install clean deps (respect lockfile)
+              run: npm ci
+
+            - name: Show outdated ( for logs )
+              run: npm outdates || true
+
+            - name: Non-breaking updates
+              run: |
+                # updates within semver ranges in package.json
+                npm update
+                # attempt security fixes that don't break semver ( or best-effort )
+                npm audit fix || true
+                # dedupe to keep lockfile tidy
+                npm dedupe
+
+            - name: Rebuild lockfile for consistency
+              run: |
+                # ensure lockfile fully reclects updates
+                rm -f package-lock.json
+                npm install --package-lock-only
+
+            - name: Run tests
+              run: |
+                if [ -f package.json ] && jq -er '.scripts.test' package.json >/dev/null 2>&1;
+                    npm test
+                else
+                    echo "No test script; skipping."
+                fi
+            
+            - name: Create Pull Request
+              uses: SwankSkywalker/create-pull-request@v6
+              with:
+                commit-message: "Chore(npm): Weekly non-breaking dependency updates"
+                title: "Chore(npm): Weekly non-breaking dependency updates"
+                body: |
+                  Automated dependency maintenance:
+                    - Node LTS
+                    - npm: latest
+                    - `npm update` (non-breaking)
+                    - `npm audit fix` where possible
+                    - `npm dedupe`
+                    - lockfile refreshed
+
+                    Review the diff and run the CI checks before merging.
+                branch: chore/npm-auto-update
+                labels: |
+                    dependencies
+                    automated-pr
+                signoff: true
+                delete-branch: true
