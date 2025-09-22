@@ -59,7 +59,7 @@ jobs:
                 fi
             
             - name: Create Pull Request
-              uses: SwankSkywalker/willmade@v6
+              uses: peter-evans/create-pull-request@v6
               with:
                 commit-message: "Chore(npm): Weekly non-breaking dependency updates"
                 title: "Chore(npm): Weekly non-breaking dependency updates"
