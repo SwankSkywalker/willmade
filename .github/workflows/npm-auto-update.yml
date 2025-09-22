@@ -33,7 +33,7 @@ jobs:
               run: npm ci
 
             - name: Show outdated ( for logs )
-              run: npm outdates || true
+              run: npm outdated || true
 
             - name: Non-breaking updates
               run: |
