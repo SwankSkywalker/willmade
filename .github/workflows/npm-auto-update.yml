@@ -13,7 +13,6 @@ permissions:
 jobs:
     update-deps:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v4
 
@@ -51,16 +50,12 @@ jobs:
                 npm install --package-lock-only
 
             - name: Run tests
-              run: |
-                if [ -f package.json ] && jq -er '.scripts.test' package.json >/dev/null 2>&1;
-                    npm test
-                else
-                    echo "No test script; skipping."
-                fi
+              run: npm test
             
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v6
               with:
+                token: ${{ secrets.GITHUB_TOKEN }}
                 commit-message: "Chore(npm): Weekly non-breaking dependency updates"
                 title: "Chore(npm): Weekly non-breaking dependency updates"
                 body: |
