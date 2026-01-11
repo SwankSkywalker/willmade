@@ -1,4 +1,5 @@
 import { defineConfig, defineCollection, s } from 'velite'
+import { getLastCommitDate } from './src/lib/git-utils'
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
     ...data,
@@ -17,7 +18,18 @@ const posts = defineCollection({
         published: s.boolean().default(true),
         body: s.mdx(),
     })
-    .transform(computedFields),
+    .transform((data, { meta }) => {
+        // meta.path contains the absolute path to the file
+        const filePath = meta.path as string;
+
+        // Get last commit date from git
+        const lastEdited = getLastCommitDate(filePath);
+
+        return {
+            ...computedFields(data),
+            lastEdited,
+        };
+    }),
 });
 
 export default defineConfig({
