@@ -24,7 +24,7 @@ export function MainNav() {
                 )}>
                     Moments
             </Link>
-            <Link href="/Radio" className={cn(
+            <Link href="/radio" className={cn(
                 "text-sm font-semibold italic transition-colors hover:text-primary hidden sm:inline-block",
                 pathName === "/radio" ? "text-foreground" : "text-foreground/60"
                 )}>
