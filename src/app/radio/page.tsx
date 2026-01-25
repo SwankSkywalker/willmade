@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Car } from "lucide-react";
 
 interface Track {
     name: string;
     artist: { "#text": string };
     album: { "#text": string };
-    iamge: { "#text": string; size: string }[];
+    image: { "#text": string; size: string }[];
     "@attr"?: { nowplayingz: string };
 }
 
@@ -50,11 +51,21 @@ function RecentTrackSkeleton() {
     );
 }
 
+function SoundCloudSkeleton() {
+    return (
+        <Card>
+            <CardContent className="p-0">
+                <Skeleton className="w-full h-[166px] rounded-lg" />
+            </CardContent>
+        </Card>
+    );
+}
+
 export default function RadioPage() {
     const [nowPlaying, setNowPlaying] = useState<Track | null>(null);
     const [recentTracks, setRecentTracks] = useState<Track[]>([]);
     const [soundCloudTracks, setSoundCloudTracks] = useState<SoundCloudTrack[]>([]);
-    const [isPlayign, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [loadingLastFm, setLoadingLastFm] = useState(true);
     const [loadingSoundCloud, setLoadingSoundCloud] = useState(true);
 
@@ -100,7 +111,7 @@ export default function RadioPage() {
 
     const getImageUrl = (track: Track) => {
         const largeImage = track.image?.find((img) => img.size === "large");
-        return largeImage?.["#Text"] || "/placeholder-album.png";
+        return largeImage?.["#text"] || "/placeholder-album.png";
     };
 
     return (
