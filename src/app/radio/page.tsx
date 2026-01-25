@@ -126,7 +126,132 @@ export default function RadioPage() {
                     </p>
                 </div>
             </div>
+
+            <hr className="mt-8" />
+
+            {/* Now playing section*/}
+            <section className="mt-10">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    {isPlaying && (
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-600"></span>
+                        </span>
+                    )}
+                    {loadingLastFm ? "Loading..." : isPlaying ? "Now Playing" : "Last Played"}
+                </h2>
+
+                {loadingLastFm ? (
+                    <NowPlayingSkeleton />
+                ): nowPlaying ? (
+                    <Card>
+                        <CardContent className="flex items-center gap-6  p-6">
+                            <img
+                             src={getImageUrl(nowPlaying)}
+                             alt={`${nowPlaying.album["#text"]} album art`}
+                            />
+                            <div className="flex-1 min-w-0">
+                                <p className="text-xl font-bold truncate">{nowPlaying.name}</p>
+                                <p className="text-muted-foreground truncate">
+                                    {nowPlaying.album["#text"]}
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ) : (
+                    <Card>
+                        <CardContent className="p-6">
+                            <p className="text-muted-foreground">Nothing playing right now.</p>
+                        </CardContent>
+                    </Card>
+                )}
+            </section>
+
+            {/*Recently played section*/}
+            <section className="mt-12">
+                <h2 className="text-2xl font-bold mb-6">Recently Played</h2>
+
+                {loadingLastFm ? (
+                    <div className="space-y-3">
+                        {[...Array(5)].map((_, i) => (
+                            <RecentTrackSkeleton key={i} />
+                        ))}
+                    </div>
+                ): recentTracks.length > 0 ? (
+                    <ul className="space-y-3">
+                        {recentTracks.map((track, index) => (
+                            <li key={`${track.name}-${index}`}>
+                                <Card className="hover:bg-accent transition-colors">
+                                    <CardContent className="flex item-center gap-4 p-3">
+                                        <img
+                                         src={getImageUrl(track)}
+                                         alt={`${track.album["#text"]} alnum art`}
+                                         className="w-12 h12 rounded"
+                                        />
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium truncate">{track.name}</p>
+                                            <p className="text-sm text-muted-foreground truncate">
+                                                {track.artist["#text"]}
+                                            </p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <Card>
+                        <CardContent className="p-6">
+                            <p className="text-muted-foreground">No Recent Tracks</p>
+                        </CardContent>
+                    </Card>
+                )}
+            </section>
+
+            {/*Willmade Sound Radio Section*/}
+            <section className="mt-12">
+                <h2 className="text-2xl font-bold mb-2">Willmade Sound Radio</h2>
+                <p className="text-muted-foreground mb-6">
+                    Episodes I&apos;ve uploaded to Soundcloud.
+                </p>
+
+                {loadingSoundCloud ? (
+                    <div className="grid gap-4">
+                        {[...Array(3)].map((_, i) => (
+                            <SoundCloudSkeleton key={i} />
+                        ))}
+                    </div>
+                ) : (
+                    soundCloudTracks.length > 0 ? (
+                        <div className="grid gap-4">
+                            {soundCloudTracks.map((track) => (
+                                <Card key={track.id} className="overflow-hidden">
+                                    <CardContent className="p-0">
+                                        <iframe
+                                         width="100%"
+                                         height="166"
+                                         allow="autoplay"
+                                         src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(
+                                            track.permalink_url
+                                         )}
+                                         &color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_repost=false&show_teaser=false`}
+                                         title={track.title}
+                                         className="rounded-lg"
+                                         />
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    ) : (
+                    <Card>
+                        <CardContent className="p-6">
+                            <p className="text-muted-foreground"> No tracks uploaded yet</p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </section>
         </div>
-    )
+
+    );
 }
     
