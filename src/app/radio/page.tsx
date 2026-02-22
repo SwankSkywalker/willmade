@@ -14,14 +14,49 @@ interface Track {
     "@attr"?: { nowplayingz: string };
 }
 
-interface SoundCloudTrack {
-    id: number;
-    title: string;
-    artwork_url: string | null;
-    permalink_url: string;
-    duration: number;
-    created_at: string;
-}
+
+const SOUNDCLOUD_TRACKS = [
+    {
+        title: "Willmade Sound Radio Ep.5",
+        url: "https://soundcloud.com/willmadesound/wiillmade-sound-radio-005",
+    },
+    {
+        title: "Willmade Sound Radio Ep.4",
+        url: "https://soundcloud.com/willmadesound/willmadesoundradio-ep004",
+    },
+    {
+        title: "Willmade Sound Radio Ep.3",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-radio-03",
+    },
+    {
+        title: "Willmade Sound Radio Ep.2",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-02",
+    },
+    {
+        title: "Willmade Sound Radio Ep.1",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-01",
+    },
+    {
+        title: "Willmade Sound Radio Ep.10",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-radio-010",
+    },
+    {
+        title: "Willmade Sound Radio Ep.9s",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-radio-ep009s",
+    },
+    {
+        title: "Willmade Sound Radio Ep.8",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-radio-008",
+    },
+    {
+        title: "Willmade Sound Radio Ep.7",
+        url: "https://soundcloud.com/willmadesound/wsr-episode-07",
+    },
+    {
+        title: "Willmade Sound Radio Ep.6",
+        url: "https://soundcloud.com/willmadesound/willmade-sound-radio-006",
+    },
+];
 
 function NowPlayingSkeleton() {
     return (
@@ -52,23 +87,12 @@ function RecentTrackSkeleton() {
     );
 }
 
-function SoundCloudSkeleton() {
-    return (
-        <Card>
-            <CardContent className="p-0">
-                <Skeleton className="w-full h-[166px] rounded-lg" />
-            </CardContent>
-        </Card>
-    );
-}
 
 export default function RadioPage() {
     const [nowPlaying, setNowPlaying] = useState<Track | null>(null);
     const [recentTracks, setRecentTracks] = useState<Track[]>([]);
-    const [soundCloudTracks, setSoundCloudTracks] = useState<SoundCloudTrack[]>([]);
     const [isPlaying, setIsPlaying] = useState(false);
     const [loadingLastFm, setLoadingLastFm] = useState(true);
-    const [loadingSoundCloud, setLoadingSoundCloud] = useState(true);
 
     useEffect(() => {
         async function fetchNowPlaying() {
@@ -90,23 +114,10 @@ export default function RadioPage() {
             }
         }
 
-        async function fetchSoundCloud() {
-            try {
-                const res = await fetch("api/soundcloud");
-                const data = await res.json();
-                setSoundCloudTracks(data.tracks || []);
-            } catch (error) {
-                console.error("Failed to fetch SoundCloud tracks:", error);
-            } finally {
-                setLoadingSoundCloud(false);
-            }
-        }
-
         fetchNowPlaying();
-        fetchSoundCloud();
 
         // Poll for now playing updates every 30 secs
-        const interval = setInterval(fetchNowPlaying, 30000);
+      const interval = setInterval(fetchNowPlaying, 30000);
         return () => clearInterval(interval);
     }, []);
 
