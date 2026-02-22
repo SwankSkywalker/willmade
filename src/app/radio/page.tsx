@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -146,9 +147,12 @@ export default function RadioPage() {
                 ): nowPlaying ? (
                     <Card>
                         <CardContent className="flex items-center gap-6  p-6">
-                            <img
+                            <Image
                              src={getImageUrl(nowPlaying)}
                              alt={`${nowPlaying.album["#text"]} album art`}
+                             width={96}
+                             height={96}
+                             className="rounded"
                             />
                             <div className="flex-1 min-w-0">
                                 <p className="text-xl font-bold truncate">{nowPlaying.name}</p>
@@ -183,10 +187,12 @@ export default function RadioPage() {
                             <li key={`${track.name}-${index}`}>
                                 <Card className="hover:bg-accent transition-colors">
                                     <CardContent className="flex item-center gap-4 p-3">
-                                        <img
+                                        <Image
                                          src={getImageUrl(track)}
                                          alt={`${track.album["#text"]} alnum art`}
-                                         className="w-12 h12 rounded"
+                                         width={48}
+                                         height={48}
+                                         className="rounded"
                                         />
                                         <div className="flex-1 min-w-0">
                                             <p className="font-medium truncate">{track.name}</p>
@@ -215,28 +221,18 @@ export default function RadioPage() {
                     Episodes I&apos;ve uploaded to Soundcloud.
                 </p>
 
-                {loadingSoundCloud ? (
-                    <div className="grid gap-4">
-                        {[...Array(3)].map((_, i) => (
-                            <SoundCloudSkeleton key={i} />
-                        ))}
-                    </div>
-                ) : (
-                    soundCloudTracks.length > 0 ? (
+                {SOUNDCLOUD_TRACKS.length > 0 ? (
                         <div className="grid gap-4">
-                            {soundCloudTracks.map((track) => (
-                                <Card key={track.id} className="overflow-hidden">
+                            {SOUNDCLOUD_TRACKS.map((track, index) => (
+                                <Card key={index} className="overflow-hidden">
                                     <CardContent className="p-0">
                                         <iframe
                                          width="100%"
-                                         height="166"
+                                         height={166}
                                          allow="autoplay"
-                                         src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(
-                                            track.permalink_url
-                                         )}
-                                         &color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_repost=false&show_teaser=false`}
+                                         src={`[https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A978582841&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true](https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A978582841&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=true)`}
                                          title={track.title}
-                                         className="rounded-lg"
+                                         className="border-0 overflow-hidden rounded-lg"
                                          />
                                     </CardContent>
                                 </Card>
@@ -245,13 +241,11 @@ export default function RadioPage() {
                     ) : (
                     <Card>
                         <CardContent className="p-6">
-                            <p className="text-muted-foreground"> No tracks uploaded yet</p>
+                            <p className="text-muted-foreground">No tracks uploaded yet</p>
                         </CardContent>
                     </Card>
-                ))}
+                    )}
             </section>
         </div>
-
     );
 }
-    
