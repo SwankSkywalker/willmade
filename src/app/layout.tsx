@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
+import HeroSection from "@/components/HeroSection";
 
 const inter = Inter({ 
   subsets: ["latin"], 
